@@ -39,9 +39,14 @@ Zaloguj się e-mailem <input type="email" v-model="email">
 
 
 <script>
+import LoginForm from "./LoginForm";
+import "milligram";
+
+
 export default {  //specyfikacja komponentyu
 
   name: 'app',
+  components: {LoginForm},
   data () {
     return {
       email: '',
@@ -59,12 +64,13 @@ export default {  //specyfikacja komponentyu
 
 }
 
-import "milligram";
 
 
 </script>
 
 <style lang="scss">
-
+h1{
+  color: deeppink
+}
 
 </style>
