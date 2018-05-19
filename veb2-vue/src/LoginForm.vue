@@ -1,24 +1,10 @@
 <template>
   <div id="app">
-    <h1> Witaj w systemie zapisów na zajęcia</h1>
-<div v-if="isAuthebticated">
+<h1> Witaj w systemie zapisów na zajęcia</h1>
 
-<h2>Zalogowałeś się jako: {{email}}</h2>
- <button @click="LogOut()">Wyloguj</button>
-
-
-</div>
-
-<div v-else>
 
 Zaloguj się e-mailem <input type="email" v-model="email">
-  <button @click="logIn()">Zaloguj</button>
-
-
-</div>
-
-
-
+  <button @click="login()">Zaloguj</button>
 
 
    <!-- <h1>Twój e-mail to:{{ email.length }} {{email }} </h1>
@@ -40,23 +26,17 @@ Zaloguj się e-mailem <input type="email" v-model="email">
 
 <script>
 export default {  //specyfikacja komponentyu
-
   name: 'app',
   data () {
     return {
-      email: '',
-      isAuthebticated: false
+      email: ''
     }
    },
    methods: {
-  logIn() {
-   this.isAuthebticated = true
-  },
-  LogOut() {
-    this.isAuthebticated = false
+  login() {
+    alert("zalogowałeś sie jako" +this.email )
   }
-},
-
+}
 }
 </script>
 
