@@ -58,6 +58,10 @@ export default {  //specyfikacja komponentyu
 },
 
 }
+
+import "milligram";
+
+
 </script>
 
 <style lang="scss">
