@@ -1,9 +1,16 @@
 <template>
     <div v-if="adding">
-        <new-meetning @add="addMeeting($event)"></new-meetning>
+        <new-meeting @add="addMeeting($event)"></new-meeting>
         <meeting-list :meetings="meetings"></meeting-list>
     </div>
 
+    <div v-else>
+        <button @click="enterAddingNewMeeting()">Nowe Spotkanie</button>
+        <meeting-list :meetings="meetings" :username="username"
+        @subscribe= "addNewParticipant($event)"
+        @removeMeeting="removeMeeting($event)">
+        </meeting-list>
+    </div>
 
 </template>
 
@@ -18,14 +25,27 @@ export default {
         return{
             meetings: [],
             adding: false
-        }
+        };
     },
 
     methods: {
-        addMeetning(meetning) {
-            this.addMeetning.push(meetning);
-            this.adding;
-        }
+        addMeetning(meeting) {
+            this.meetings.push(meeting);
+            this.adding = false;
+        },
+        enterAddingNewMeeting(){
+            this.adding = true;
+        },
+        addNewParticipant(meeting){
+
+        },
+        removeMeeting(meeting){
+
+        },
+        deleteParticipant(meeting){
+
+        },
+
     }
     
 }

@@ -4,6 +4,7 @@
         <h2>Zalogowałeś się jako: {{username}}</h2>         
         <button @click="logout()">Wyloguj</button>          
     </div>
+    
     <meeting-viev :username="username"></meeting-viev>
   </div>
 </template>
