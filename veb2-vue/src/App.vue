@@ -11,20 +11,21 @@
 
 <div v-else>
 
-Zaloguj się e-mailem <input type="email" v-model="email">
-  <button @click="logIn()">Zaloguj</button>
-
+Podaje-mailem <input type="email" v-model="email">
+Podaj hasło <input type="password" v-moder="password">
+ 
 
 </div>
 
+   <div v-if="email.match(/^[A-Za-z0-9\-_]+@[A-Za-z0-9\-_\.]+\.pl$/) ">Email prawidołwy</div>
+   <div v-else="">Podaj prawidołwy email na polskiej poczcie</div>
+
+ <button @click="logIn()">Zaloguj</button>
 
 
 
 
-   <!-- <h1>Twój e-mail to:{{ email.length }} {{email }} </h1>
-   <input type="email" v-model="email">
-   <div v-if="email.match(/^[A-Za-z0-9\-_]+@[A-Za-z0-9\-_\.]+\.pl$/) ">Pasuje</div>
-    <div v-else-if="email.length < 15">Twój adres e-mail jest w sam raz.</div>
+    <!--<div v-else-if="email.length < 15">Twój adres e-mail jest w sam raz.</div>
     <div v-else>Twój adres e-mail jest stanowczo za długi.</div>
     <button @click="alertMyEmail()">Wyświetl mój e-mail w alercie</button> -->
    
