@@ -1,77 +1,51 @@
 <template>
   <div id="app">
     <h1> Witaj w systemie zapisów na zajęcia</h1>
-<div v-if="isAuthebticated">
+    <div v-show="!isAuthebticated">
+      <login-form @login="login($event)"></login-form>
+    </div>
 
-<h2>Zalogowałeś się jako: {{email}}</h2>
- <button @click="LogOut()">Wyloguj</button>
-
-
-</div>
-
-<div v-else>
-
-Podaje-mailem <input type="email" v-model="email">
-Podaj hasło <input type="password" v-moder="password">
- 
-
-</div>
-
-   <div v-if="email.match(/^[A-Za-z0-9\-_]+@[A-Za-z0-9\-_\.]+\.pl$/) ">Email prawidołwy</div>
-   <div v-else="">Podaj prawidołwy email na polskiej poczcie</div>
-
- <button @click="logIn()">Zaloguj</button>
-
-
-
-
-    <!--<div v-else-if="email.length < 15">Twój adres e-mail jest w sam raz.</div>
-    <div v-else>Twój adres e-mail jest stanowczo za długi.</div>
-    <button @click="alertMyEmail()">Wyświetl mój e-mail w alercie</button> -->
-   
-<!-- [^A-Za-z0-9\-_]+@[A-Za-z0-9\-_\.]+\.pl$/ -->
-
+      <div v-show="isAuthebticated">
+      <main-page @logout="logout" :username="authenticatedUsername"> </main-page>
+    </div>
   </div>
-
-
-
-
 </template>
 
 
 <script>
-import LoginForm from "./LoginForm";
 import "milligram";
 
+import LoginForm from "./LoginForm";
+import MainPage from "./MainPage";
 
-export default {  //specyfikacja komponentyu
 
-  name: 'app',
-  components: {LoginForm},
-  data () {
+export default {
+  //specyfikacja komponentyu
+  name: "app",
+  components: { LoginForm, MainPage},
+  data() {
+
     return {
-      email: '',
-      isAuthebticated: false
-    }
-   },
-   methods: {
-  logIn() {
-   this.isAuthebticated = true
+      email: "",
+      isAuthebticated: false,
+      authenticatedUsername:""
+    };
   },
-  LogOut() {
-    this.isAuthebticated = false
+  methods: {
+    login(username) {
+      this.isAuthebticated = true;
+      this.authenticatedUsername = username;
+    },
+    logout() {
+      this.isAuthebticated = false;
+      this.authenticatedUsername = "";
+    }
   }
-},
-
-}
-
-
-
+};
 </script>
 
 <style lang="scss">
-h1{
-  color: deeppink
+h1 {
+  color: deeppink;
 }
-
 </style>
