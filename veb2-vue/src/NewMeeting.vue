@@ -1,4 +1,5 @@
 <template>
+
     <from @submit.prevent="addMeeting()">
         <h2>Dodaj nowe spotkanie:</h2>
         <label>Nazwa spotkania:</label>
@@ -6,31 +7,30 @@
         
         <label>Opis spotkania:</label>
         <textarea v-model="newMeeting.description"></textarea>
-            <div>
+           <div>
             <button>Dodaj spotkanie</button>
-            </div>
+            <em v-if="shortName" style = "color:red"> 
+                Za krótka nazwa </em>
+        </div>
     </from>
 </template>
-
 
 <script>
 export default {
     data() {
         return{
             newMeeting: {
-                participants: [],
+                participants:[],
             },
             shortName: false
         }
     },
-    
-    methods:{
-        addMeetnig() {
-            if(!this.newMeeting.name|| this.newMeeting.name.length <3){
-             this.shortName = true;
-            }
-            else {
-             this.$emit("add", this.addMeetnig)
+             methods: {
+    addMeeting() {
+      if (!this.newMeeting.name || this.newMeeting.name.length < 1) {
+        this.hasEmptyName = true;
+      } else {
+        this.$emit("added", this.newMeeting);
             }
         }
     }

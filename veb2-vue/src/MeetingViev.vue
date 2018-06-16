@@ -1,11 +1,11 @@
 <template>
     <div v-if="adding">
-        <new-meeting @add="addMeeting($event)"></new-meeting>
+        <new-meeting @added="addMeeting($event)"></new-meeting>
         <meeting-list :meetings="meetings"></meeting-list>
     </div>
 
     <div v-else>
-        <button @click="enterAddingNewMeeting()">Nowe Spotkanie</button>
+        <button @click="addingNewMeeting()">Nowe Spotkanie</button>
         <meeting-list :meetings="meetings" :username="username"
         @subscribe= "addNewParticipant($event)"
         @removeMeeting="removeMeeting($event)">
@@ -33,7 +33,7 @@ export default {
             this.meetings.push(meeting);
             this.adding = false;
         },
-        enterAddingNewMeeting(){
+        addingNewMeeting(){
             this.adding = true;
         },
         addNewParticipant(meeting){
