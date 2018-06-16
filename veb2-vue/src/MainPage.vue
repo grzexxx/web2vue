@@ -7,13 +7,11 @@
   </div>
 </template>
 
-
 <script>
 export default {
 
    components: {
    },
-   
      methods: {
         logout() {
             this.$emit("logout");
