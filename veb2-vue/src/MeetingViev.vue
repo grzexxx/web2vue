@@ -4,11 +4,12 @@
         <meetings-list :meetings="meetings"></meetings-list>
     </div>
 
-    <div v-else>
+     <div v-else>
       <button @click="addingNewMeeting()">Nowe Spotkanie</button>
-       <meetings-list>  :meetings="meetings" :username="username"
+       <meetings-list :meetings="meetings" :username="username"
        
-       </meetings-list>
+        @subscribe="addNewParticipant($event)" @removeMeeting="removeMeeting($event)" 
+        @unsubscribe="deleteParticipant($event)"></meetings-list>
     </div>
 </template>
 
@@ -31,7 +32,18 @@ export default {
     },
     addingNewMeeting() {
       this.isAdding = true;
-   //todo
+    },
+    addNewParticipant(meeting){
+       meeting.participants.push(this.username);
+    },
+    removeMeeting(meeting){
+      let x = this.meetings.indexOf(meeting) 
+      this.meetings.splice(x,1);
+    },
+    deleteParticipant(meeting){ 
+      let meetingIndex = this.meetings.indexOf(meeting)
+      let patricipantIndex= meeting.participants.indexOf(this.username);
+      meeting.participants.splice(patricipantIndex,1);
     },
   }
 };
