@@ -1,53 +1,39 @@
 <template>
-    <div v-if="adding">
-        <new-meeting @added="addMeeting($event)"></new-meeting>
-        <meeting-list :meetings="meetings"></meeting-list>
+    <div v-if="isAdding">
+       <new-meeting-form @added="addNewMeeting($event)"></new-meeting-form>
+        <meetings-list :meetings="meetings"></meetings-list>
     </div>
 
     <div v-else>
-        <button @click="addingNewMeeting()">Nowe Spotkanie</button>
-        <meeting-list :meetings="meetings" :username="username"
-        @subscribe= "addNewParticipant($event)"
-        @removeMeeting="removeMeeting($event)">
-        </meeting-list>
+      <button @click="addingNewMeeting()">Nowe Spotkanie</button>
+       <meetings-list>  :meetings="meetings" :username="username"
+       
+       </meetings-list>
     </div>
-
 </template>
 
 <script>
-    import NewMeeting from "./NewMeeting.vue";
-    import MeetingList from "./MeetingList.vue";
-
+import NewMeetingForm from "./NewMeetingForm";
+import MeetingsList from "./MeetingsList";
 export default {
-    props: ["username"],
-    components: {NewMeeting, MeetingList},
-    data(){
-        return{
-            meetings: [],
-            adding: false
-        };
+  props: ["username"],
+  components: { NewMeetingForm, MeetingsList },
+  data() {
+    return {
+      meetings: [],
+      isAdding: false
+    };
+  },
+  methods: {
+    addNewMeeting(meeting) {
+      this.meetings.push(meeting);
+      this.isAdding=false;
     },
-
-    methods: {
-        addMeetning(meeting) {
-            this.meetings.push(meeting);
-            this.adding = false;
-        },
-        addingNewMeeting(){
-            this.adding = true;
-        },
-        addNewParticipant(meeting){
-
-        },
-        removeMeeting(meeting){
-
-        },
-        deleteParticipant(meeting){
-
-        },
-
-    }
-    
-}
+    addingNewMeeting() {
+      this.isAdding = true;
+   //todo
+    },
+  }
+};
 </script>
 
