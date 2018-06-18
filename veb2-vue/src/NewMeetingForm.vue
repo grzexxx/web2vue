@@ -10,7 +10,7 @@
                 
                   <button>Dodaj</button>
                 
-                <em class="float-left" v-if="shortName" style="color:red"> Za krótka nazwa</em>
+                <em class="float-left" v-if="shortName" style="color:pink"> Za krótka nazwa</em>
             </div>
         </form>
 </template>
@@ -22,12 +22,12 @@ export default {
       newMeeting: {
         participants:[],
       },
-      hasEmptyName: false
+      shortName: false
     };
   },
   methods: {
     addNewMeeting() {
-      if (!this.newMeeting.name || this.newMeeting.name.length < 1) {
+      if (!this.newMeeting.name || this.newMeeting.name.length < 3) {
         this.shortName = true;
       } else {
         this.$emit("added", this.newMeeting);

@@ -46,6 +46,9 @@ export default {
 
 <style lang="scss">
 h1 {
-  color: deeppink;
+  color: red;
+}
+h1, h2 {
+  font-weight: normal;
 }
 </style>

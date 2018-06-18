@@ -9,7 +9,8 @@
        <meetings-list :meetings="meetings" :username="username"
        
         @subscribe="addNewParticipant($event)" @removeMeeting="removeMeeting($event)" 
-        @unsubscribe="deleteParticipant($event)"></meetings-list>
+        @unsubscribe="deleteParticipant($event)">
+        </meetings-list>
     </div>
 </template>
 
